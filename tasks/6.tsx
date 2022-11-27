@@ -5,11 +5,16 @@ const Input = ({value, onChange}) => {
     return <input value={value} onChange={(e) => onChange(e.target.value)} />
 }
 
-export const Form = ({initialValues}) => {
-    const [values, setValues] = useState(initialValues);
-    const handleReset = () => {
+export const App = () => {
+    const formValues = useSelector(selectProfile);
 
-    }
+    return (
+        <Form initialValues={formValues} onReset={}/>
+    )
+}
+
+export const Form = ({initialValues, onReset}) => {
+    const [values, setValues] = useState(initialValues);
 
     return (
         <form>
@@ -25,7 +30,7 @@ export const Form = ({initialValues}) => {
                     setValues({...values, password: newValue})
                 }
             />
-            <button onClick={handleReset}>Reset</button>
+            <button onClick={onReset}>Reset</button>
         </form>
     )
 }
